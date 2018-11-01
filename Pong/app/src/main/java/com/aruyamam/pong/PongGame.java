@@ -21,7 +21,7 @@ class PongGame extends SurfaceView implements Runnable {
 
     // How many frames per second did we get?
     private long mFPS;
-    // The number of millsecondas in a second
+    // The number of milliseconds in a second
     private final int MILLS_IN_SECOND = 1000;
 
     // Holds the resolution of the screen
@@ -66,6 +66,7 @@ class PongGame extends SurfaceView implements Runnable {
         mPaint = new Paint();
 
         // Initialize the bat and ball
+        mBall = new Ball(mScreenX);
 
         // Everything is ready so start the game
         startNewGame();
@@ -75,6 +76,7 @@ class PongGame extends SurfaceView implements Runnable {
     // or is starting their first game
     private void startNewGame() {
         // Put the ball back to the starting position
+        mBall.reset(mScreenX, mScreenY);
 
         // Reset the score and the player's chances
         mScore = 0;
@@ -86,7 +88,7 @@ class PongGame extends SurfaceView implements Runnable {
         // mPlaying gives us finer control
         // rather than just relying on the calls to run
         // mPlying must be tru AND
-        // the threa running for the main
+        // the thread running for the main
         // loop to execute
         while (mPlaying) {
             // What time is it now at the start of the loop?
@@ -97,34 +99,35 @@ class PongGame extends SurfaceView implements Runnable {
             if (!mPaused) {
                 update();
                 // Now the bat and ball are in
-                // theri new position
+                // there new position
                 // we can see if there have
                 // been any collisions
                 detectCollisions();
             }
 
             // Teh movement has been handled  and collisions
-            // detected now we an draww the scene
+            // detected now we an draw the scene
             draw();
 
             // How long did this frame/loop take?
             // Store the answer in timeThisFrame
-            long timeThisframe = System.currentTimeMillis() - frameStartTime;
+            long timeThisFrame = System.currentTimeMillis() - frameStartTime;
 
             // Make sure timeThisFrame is at least 1 millisecond
             // because accidentally dividing
             // by zero crashes the game
-            if (timeThisframe > 0) {
+            if (timeThisFrame > 0) {
                 // Store the current frame rate in mFPS
                 // ready to pass to the update methods of
                 // mBat and mBall next frame/loop
-                mFPS = MILLS_IN_SECOND / timeThisframe;
+                mFPS = MILLS_IN_SECOND / timeThisFrame;
             }
         }
     }
 
     private void update() {
         // Update the bat and the ball
+        mBall.update(mFPS);
     }
 
     private void detectCollisions() {
@@ -154,6 +157,7 @@ class PongGame extends SurfaceView implements Runnable {
             mPaint.setColor(Color.argb(255, 255,255,255));
 
             // Draw the bat and ball
+            mCanvas.drawRect(mBall.getRect(), mPaint);
 
             // Choose the font size
             mPaint.setTextSize(mFontSize);
@@ -178,8 +182,8 @@ class PongGame extends SurfaceView implements Runnable {
         mCanvas.drawText("FPS: " + mFPS, 10, debugStart + debugSize, mPaint);
     }
 
-    // This metod is called by PongActivity
-    // when the player ruits the game
+    // This method is called by PongActivity
+    // when the player starts the game
     public void pause() {
         // Set mPlaying to false
         // Stopping the thread isn't
@@ -190,7 +194,7 @@ class PongGame extends SurfaceView implements Runnable {
             mGameThread.join();
         }
         catch (InterruptedException e) {
-            Log.e("Error: ", "joinig thread");
+            Log.e("Error: ", "joining thread");
         }
     }
 
