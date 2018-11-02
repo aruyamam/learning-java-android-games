@@ -44,7 +44,7 @@ class Ball {
     }
 
     // Reverse the vertical direction of travel
-    void reservseYVelocity() {
+    void reverseYVelocity() {
         mYVelocity = -mYVelocity;
     }
 
@@ -86,7 +86,7 @@ class Ball {
         // Pick a bounce direction
         if (relativeIntersect < 0) {
             // Go right
-            mYVelocity = Math.abs(mXVelocity);
+            mXVelocity = Math.abs(mXVelocity);
         }
         else {
             // Go left
