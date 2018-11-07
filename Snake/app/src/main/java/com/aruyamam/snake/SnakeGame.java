@@ -97,11 +97,16 @@ class SnakeGame extends SurfaceView implements Runnable {
                 new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh),
                 blockSize
         );
+        mSnake = new Snake(
+                context,
+                new Point(NUM_BLOCKS_WIDE, mNumBlocksHigh),
+                blockSize);
     }
 
     // Called to start a new game
     public void newGame() {
         // reset the snake
+        mSnake.reset(NUM_BLOCKS_WIDE, mNumBlocksHigh);
 
         // Get the apple ready for dinner
         mApple.spawn();
@@ -153,10 +158,25 @@ class SnakeGame extends SurfaceView implements Runnable {
     // Update all the game objects
     public void update() {
         // Move the snake
+        mSnake.move();
 
         // Did the head of the snake eat the apple?
+        if (mSnake.checkDinner(mApple.getLocation())) {
+            mApple.spawn();
+            // Add to mScore
+            mScore = mScore + 1;
+
+            // Play a sound
+            mSP.play(mEat_ID, 1, 1, 0, 0, 1);
+        }
 
         // Did the snake die?
+        if (mSnake.detectDath()) {
+            // Pause the game ready to start again
+            mSP.play(mCrashID, 1, 1, 0, 0, 1);
+
+            mPaused = true;
+        }
     }
 
     // Do all the drawing
@@ -177,6 +197,7 @@ class SnakeGame extends SurfaceView implements Runnable {
 
             // Draw the apple the snake
             mApple.draw(mCanvas, mPaint);
+            mSnake.draw(mCanvas, mPaint);
 
             // Draw some text while pause
             if (mPaused) {
@@ -208,7 +229,7 @@ class SnakeGame extends SurfaceView implements Runnable {
                 }
 
                 // Let the Snake class handle t1he input
-
+                mSnake.switchHeading(motionEvent);
                 break;
 
             default:
