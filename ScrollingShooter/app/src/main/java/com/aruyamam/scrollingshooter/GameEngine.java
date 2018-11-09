@@ -13,12 +13,16 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter {
 
     private GameState mGameState;
     private SoundEngine mSoundEngine;
+    HUD mHUD;
+    Renderer mRenderer;
 
     public GameEngine(Context context, Point size) {
         super(context);
 
         mGameState = new GameState(this, context);
         mSoundEngine = new SoundEngine(context);
+        mHUD = new HUD(size);
+        mRenderer = new Renderer(this);
     }
 
     @Override
@@ -31,6 +35,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter {
             }
 
             // Draw all the game objects here
+            mRenderer.draw(mGameState, mHUD);
 
             // Measure the frames per second
             long timeThisFrame = System.currentTimeMillis() - frameStartTime;
