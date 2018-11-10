@@ -2,6 +2,7 @@ package com.aruyamam.scrollingshooter;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.PointF;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -21,6 +22,8 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
     private SoundEngine mSoundEngine;
     HUD mHUD;
     Renderer mRenderer;
+    ParticleSystem mParticleSystem;
+    PhysicsEngine mPhysicsEngine;
 
     public GameEngine(Context context, Point size) {
         super(context);
@@ -30,6 +33,10 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         mSoundEngine = new SoundEngine(context);
         mHUD = new HUD(size);
         mRenderer = new Renderer(this);
+        mPhysicsEngine = new PhysicsEngine();
+
+        mParticleSystem = new ParticleSystem();
+        mParticleSystem.init(1000);
     }
 
     // For the game engine broadcaster interface
@@ -45,10 +52,15 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
 
             if (!mGameState.getPaused()) {
                 // Update all the game objects here
+
+                // This call to update will evolve with the project
+                if (mPhysicsEngine.update(mFPS, mParticleSystem)) {
+                    deSpawnReSpawn();
+                }
             }
 
             // Draw all the game objects here
-            mRenderer.draw(mGameState, mHUD);
+            mRenderer.draw(mGameState, mHUD, mParticleSystem);
 
             // Measure the frames per second
             long timeThisFrame = System.currentTimeMillis() - frameStartTime;
@@ -65,6 +77,9 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         for (InputObserver o : inputObservers) {
             o.handleInput(motionEvent, mGameState, mHUD.getControls());
         }
+
+        // This is temporary code to emit a particle system
+        mParticleSystem.emitParticles(new PointF(500, 500));
 
         return true;
     }
