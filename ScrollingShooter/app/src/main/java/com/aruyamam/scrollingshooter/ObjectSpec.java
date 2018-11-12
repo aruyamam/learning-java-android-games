@@ -34,7 +34,7 @@ abstract class ObjectSpec {
         return mSizeScale;
     }
 
-    String[] getcomponents() {
+    String[] getComponents() {
         return mComponents;
     }
 }
