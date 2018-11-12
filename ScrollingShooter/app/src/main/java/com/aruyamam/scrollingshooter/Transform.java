@@ -66,6 +66,12 @@ class Transform {
         mFacingRight = true;
     }
 
+    void headLeft() {
+        mHeadingLeft = true;
+        mHeadingRight = false;
+        mFacingRight = false;
+    }
+
     boolean headingUp() {
         return mHeadingUp;
     }
