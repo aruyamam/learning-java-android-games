@@ -9,7 +9,7 @@ import android.view.SurfaceView;
 
 import java.util.ArrayList;
 
-class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngineBroadcaster {
+class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngineBroadcaster, PlayerLaserSpawner {
 
     private Thread mThread = null;
     private long mFPS;
@@ -79,7 +79,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         }
 
         // This is temporary code to emit a particle system
-        mParticleSystem.emitParticles(new PointF(500, 500));
+//        mParticleSystem.emitParticles(new PointF(500, 500));
 
         return true;
     }
@@ -108,5 +108,11 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         // Eventually this will despawn
         // and then respawn all the game objects
 
+    }
+
+    @Override
+    public boolean spawnPlayerLaser(Transform transform) {
+
+        return false;
     }
 }
