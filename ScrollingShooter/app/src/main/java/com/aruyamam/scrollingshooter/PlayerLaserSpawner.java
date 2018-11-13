@@ -1,6 +1,6 @@
 package com.aruyamam.scrollingshooter;
 
-interface PlayerLaserSpawner {
+public interface PlayerLaserSpawner {
 
     boolean spawnPlayerLaser(Transform transform);
 }

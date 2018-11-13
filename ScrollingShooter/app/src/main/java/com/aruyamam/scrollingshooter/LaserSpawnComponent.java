@@ -11,7 +11,7 @@ class LaserSpawnComponent implements SpawnComponent {
         t.setLocation((int) startPosition.x, (int) startPosition.y);
 
         if (playerTransform.getFacingRight()) {
-            t.headingRight();
+            t.headRight();
         }
         else {
             t.headLeft();
