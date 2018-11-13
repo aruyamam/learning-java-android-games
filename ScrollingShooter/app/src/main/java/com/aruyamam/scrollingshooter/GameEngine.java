@@ -9,7 +9,7 @@ import android.view.SurfaceView;
 
 import java.util.ArrayList;
 
-class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngineBroadcaster, PlayerLaserSpawner {
+class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngineBroadcaster, PlayerLaserSpawner, AlienLaserSpawner {
 
     private Thread mThread = null;
     private long mFPS;
@@ -136,5 +136,21 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         }
 
         return true;
+    }
+
+    @Override
+    public void spawnAlienLaser(Transform transform) {
+        ArrayList<GameObject> objects = mLevel.getGameObjects();
+        // Shoot laser IF AVAILABLE
+        // Pass in the transform of the ship
+        // that requested the shot to be fired
+        if (objects.get(Level.mNextAlienLaser).spawn(transform)) {
+            Level.mNextAlienLaser++;
+            mSoundEngine.playShoot();
+            if (Level.mNextAlienLaser == Level.LAST_ALIEN_LASER + 1) {
+                // Just used the last laser
+                Level.mNextAlienLaser = Level.FIRST_ALIEN_LASER;
+            }
+        }
     }
 }
