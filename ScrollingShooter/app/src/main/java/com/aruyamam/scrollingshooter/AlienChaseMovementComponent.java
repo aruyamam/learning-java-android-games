@@ -15,6 +15,7 @@ class AlienChaseMovementComponent implements MovementComponent {
     AlienChaseMovementComponent(AlienLaserSpawner als) {
         alienLaserSpawner = als;
     }
+
     @Override
     public boolean move(long fps, Transform t, Transform playerTransform) {
         // 1 in 100 chances of shot being fired
@@ -72,7 +73,7 @@ class AlienChaseMovementComponent implements MovementComponent {
             // but only when in view.
             // Otherwise alien will disappear miles off to one side
             if (!playerTransform.getFacingRight()) {
-                location.x += slowDownRelativeToPlayer / fps;
+                location.x += speed * slowDownRelativeToPlayer / fps;
             }
             else {
                 location.x -= speed * slowDownRelativeToPlayer / fps;
