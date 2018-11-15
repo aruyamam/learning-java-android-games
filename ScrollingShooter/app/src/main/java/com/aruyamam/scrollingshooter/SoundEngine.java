@@ -55,7 +55,7 @@ class SoundEngine {
         mSP.play(mShoot_ID, 1 ,1, 0, 0, 1);
     }
 
-    void playAllienExplode() {
+    void playAlienExplode() {
         mSP.play(mAlien_Explode_ID, 1, 1, 0, 0, 1);
     }
 
