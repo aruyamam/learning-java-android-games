@@ -150,7 +150,7 @@ final class GameState {
     }
 
     void startThread() {
-        mThreatRunning = ture;
+        mThreatRunning = true;
     }
 
     boolean getDrawing() {

@@ -25,7 +25,7 @@ class Camera {
         mCurrentCameraWorldCenter = new PointF();
     }
 
-    int getPixelsPerMterY() {
+    int getPixelsPerMeterY() {
         return mPixelsPerMter;
     }
 
@@ -43,7 +43,7 @@ class Camera {
         mCurrentCameraWorldCenter.y = worldCenter.y;
     }
 
-    int getPixelsPerMter() {
+    int getPixelsPerMeter() {
         return mPixelsPerMter;
     }
 

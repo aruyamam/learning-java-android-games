@@ -2,7 +2,7 @@ package com.aruyamam.platformer;
 
 import java.util.ArrayList;
 
-class PhysticsEngine {
+class PhysicsEngine {
 
     void update(long fps,
                 ArrayList<GameObject> objects,
