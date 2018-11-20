@@ -32,11 +32,9 @@ class GameObject {
         mUpdateComponent = m;
     }
 
-    /*
     void setPlayerInputTransform(PlayerInputComponent s) {
         s.setTransform(mTransform);
     }
-    */
 
     void setTransform(Transform t) {
         mTransform = t;

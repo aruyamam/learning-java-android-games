@@ -26,11 +26,25 @@ class GameObjectFactory {
         // First give the game object the right kind of transform
         switch (object.getTag()) {
             case "Background":
-
+                object.setTransform(
+                        new BackgroundTransform(
+                                spec.getSpeed(),
+                                spec.getSize().x,
+                                spec.getSize().y,
+                                location
+                        )
+                );
                 break;
 
             case "Player":
-
+                object.setTransform(
+                        new PlayerTransform(
+                                spec.getSpeed(),
+                                spec.getSize().x,
+                                spec.getSize().y,
+                                location
+                        )
+                );
                 break;
 
             default:
@@ -47,15 +61,23 @@ class GameObjectFactory {
         for (int i = 0; i < mNumComponents; i++) {
             switch (spec.getComponents()[i]) {
                 case "PlayerInputComponent":
-
+                    object.setPlayerInputTransform(
+                        new PlayerInputComponent(mGameEngineReference)
+                    );
                     break;
 
                 case "AnimateGraphicsComponent":
-
+                    object.setGraphics(
+                            new AnimatedGraphicsComponent(),
+                            mContext,
+                            spec,
+                            spec.getSize(),
+                            mPixelsPerMeter
+                    );
                     break;
 
                 case "PlayerUpdateComponent":
-
+                    object.setMovement(new PlayerUpdateComponent());
                     break;
 
                 case "InanimateBlockGraphicsComponent":
@@ -81,11 +103,17 @@ class GameObjectFactory {
                     break;
 
                 case "BackgroundGraphicsComponent":
-
+                    object.setGraphics(
+                            new BackgroundGraphicsComponent(),
+                            mContext,
+                            spec,
+                            spec.getSize(),
+                            mPixelsPerMeter
+                    );
                     break;
 
                 case "BackgroundUpdateComponent":
-
+                    object.setMovement(new BackgroundUpdateComponent());
                     break;
 
                 default:

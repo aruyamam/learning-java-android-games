@@ -55,7 +55,7 @@ class AnimatedGraphicsComponent implements GraphicsComponent {
         // when an object is in motion
         // OR if it is a object with
         // zero speed (like a fire tile)
-        if (t.headingRight() || t.headingLeft() || t.getSpeed() === 0) {
+        if (t.headingRight() || t.headingLeft() || t.getSpeed() == 0) {
             // Player is moving so animate/change the frame
             mSectionToDraw = mAnimator.getCurrentFrame(System.currentTimeMillis());
 

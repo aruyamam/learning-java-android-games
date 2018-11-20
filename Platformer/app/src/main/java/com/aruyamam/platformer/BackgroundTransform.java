@@ -11,7 +11,7 @@ class BackgroundTransform extends Transform {
             float speed,
             float objectWidth,
             float objectHeight,
-            PointF startingLocation;
+            PointF startingLocation
     ) {
         super(speed, objectWidth, objectHeight, startingLocation);
 
