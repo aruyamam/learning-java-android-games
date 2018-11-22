@@ -95,7 +95,7 @@ class GameObjectFactory {
                     break;
 
                 case "MovableBlockUpdateComponent":
-
+                    object.setMovement(new MovableBlockUpdateComponent());
                     break;
 
                 case "DecorativeBlockUpdateComponent":

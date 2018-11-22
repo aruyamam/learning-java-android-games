@@ -93,24 +93,24 @@ final class LevelManager {
 
                 switch (levelToLoad.get(row).charAt(column)) {
                     case '1':
-                        //objects.add(factory.create(
-                        //        new BackgroundCitySpec(),
-                        //        coords
-                        //));
+                        objects.add(factory.create(
+                                new BackgroundCitySpec(),
+                                coords
+                        ));
                         break;
 
                     case '2':
-                        //objects.add(factory.create(
-                        //        new BackgroundUnderegroundSpec(),
-                        //        coords
-                        //));
+                        objects.add(factory.create(
+                                new BackgroundUnderegroundSpec(),
+                                coords
+                        ));
                         break;
 
                     case '3':
-                        //objects.add(factory.create(
-                        //        new BackgroundMountainSpec(),
-                        //        coords
-                        //));
+                        objects.add(factory.create(
+                                new BackgroundMountainSpec(),
+                                coords
+                        ));
                         break;
 
                     case 'p':
@@ -120,7 +120,7 @@ final class LevelManager {
                         //));
                         // Remember the location of
                         // the player
-                        // PLAYER_INDEX = objects.size() - 1
+                        PLAYER_INDEX = objects.size() - 1;
                         break;
 
                     case 'g':
@@ -138,10 +138,10 @@ final class LevelManager {
                         break;
 
                     case 'm':
-                        //objects.add(factory.create(
-                        //        new MovablePlatformSpec(),
-                        //        coords
-                        //));
+                        objects.add(factory.create(
+                                new MovablePlatformSpec(),
+                                coords
+                        ));
                         break;
 
                     case 'b':
