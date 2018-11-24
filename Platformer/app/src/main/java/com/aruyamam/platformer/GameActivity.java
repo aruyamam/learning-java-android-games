@@ -7,29 +7,30 @@ import android.view.Display;
 
 public class GameActivity extends Activity {
 
-    GameEngine mGameEngngine;
+    GameEngine mGameEngine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Display display = getWindowManager().getDefaultDisplay();
+        Display display = getWindowManager()
+                .getDefaultDisplay();
 
         Point size = new Point();
         display.getSize(size);
-        mGameEngngine = new GameEngine(this, size);
-        setContentView(mGameEngngine);
+        mGameEngine = new GameEngine(this, size);
+        setContentView(mGameEngine);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mGameEngngine.startThread();
+        mGameEngine.startThread();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mGameEngngine.stopThread();
+        mGameEngine.stopThread();
     }
 }

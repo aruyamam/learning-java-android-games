@@ -6,11 +6,11 @@ import android.util.Log;
 
 import com.aruyamam.platformer.GOSpec.BackgroundCitySpec;
 import com.aruyamam.platformer.GOSpec.BackgroundMountainSpec;
-import com.aruyamam.platformer.GOSpec.BackgroundUnderegroundSpec;
+import com.aruyamam.platformer.GOSpec.BackgroundUndergroundSpec;
 import com.aruyamam.platformer.GOSpec.BrickTileSpec;
 import com.aruyamam.platformer.GOSpec.CartTileSpec;
 import com.aruyamam.platformer.GOSpec.CoalTileSpec;
-import com.aruyamam.platformer.GOSpec.CollectiveObjectSpec;
+import com.aruyamam.platformer.GOSpec.CollectibleObjectSpec;
 import com.aruyamam.platformer.GOSpec.ConcreteTileSpec;
 import com.aruyamam.platformer.GOSpec.DeadTreeTileSpec;
 import com.aruyamam.platformer.GOSpec.FireTileSpec;
@@ -40,7 +40,10 @@ final class LevelManager {
     private Level currentLevel;
     private GameObjectFactory factory;
 
-    LevelManager(Context context, GameEngine ge, int pixelsPerMeter) {
+    LevelManager(Context context,
+                 GameEngine ge,
+                 int pixelsPerMeter) {
+
         objects = new ArrayList<>();
         factory = new GameObjectFactory(context, ge, pixelsPerMeter);
     }
@@ -101,7 +104,7 @@ final class LevelManager {
 
                     case '2':
                         objects.add(factory.create(
-                                new BackgroundUnderegroundSpec(),
+                                new BackgroundUndergroundSpec(),
                                 coords
                         ));
                         break;
@@ -114,10 +117,10 @@ final class LevelManager {
                         break;
 
                     case 'p':
-                        //objects.add(factory.create(
-                        //        new PlayerSpec(),
-                        //        coords
-                        //));
+                        objects.add(factory.create(
+                                new PlayerSpec(),
+                                coords
+                        ));
                         // Remember the location of
                         // the player
                         PLAYER_INDEX = objects.size() - 1;
@@ -230,16 +233,17 @@ final class LevelManager {
 
                     case 'x':
                         objects.add(factory.create(
-                                new CollectiveObjectSpec(),
+                                new CollectibleObjectSpec(),
                                 coords
                         ));
+                        gs.coinAddedToLevel();
                         break;
 
                     case 'z':
-                        //objects.add(factory.create(
-                        //        new FireTileSpec(),
-                        //        coords
-                        //));
+                        objects.add(factory.create(
+                                new FireTileSpec(),
+                                coords
+                        ));
                         break;
 
                     case 'y':

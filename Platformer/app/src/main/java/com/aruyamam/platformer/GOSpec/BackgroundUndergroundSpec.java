@@ -2,7 +2,7 @@ package com.aruyamam.platformer.GOSpec;
 
 import android.graphics.PointF;
 
-public class BackgroundUnderegroundSpec extends GameObjectSpec {
+public class BackgroundUndergroundSpec extends GameObjectSpec {
 
     // This is all the specification for the underground
     private static final String tag = "Background";
@@ -12,7 +12,7 @@ public class BackgroundUnderegroundSpec extends GameObjectSpec {
     private static final PointF size = new PointF(100, 70);
     private static final String[] components = new String[] { "BackgroundGraphicsComponent", "BackgroundUpdateComponent" };
 
-    public BackgroundUnderegroundSpec() {
+    public BackgroundUndergroundSpec() {
         super(tag, bitmapName, speed, size, components, framesOfAnimation);
     }
 }

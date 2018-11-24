@@ -159,10 +159,10 @@ class HUD {
         }
 
         // Set the colors back
-        p.setColor(Color.argb(255, 255,255,2551));
+        p.setColor(Color.argb(255, 255,255,255));
     }
 
-    ArrayList<Rect> getCtonrols() {
+    ArrayList<Rect> getControls() {
         return mControls;
     }
 }

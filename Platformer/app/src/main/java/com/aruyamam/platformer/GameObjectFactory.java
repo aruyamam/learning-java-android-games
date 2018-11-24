@@ -66,7 +66,7 @@ class GameObjectFactory {
                     );
                     break;
 
-                case "AnimateGraphicsComponent":
+                case "AnimatedGraphicsComponent":
                     object.setGraphics(
                             new AnimatedGraphicsComponent(),
                             mContext,

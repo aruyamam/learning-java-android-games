@@ -20,7 +20,7 @@ class GameEngine extends SurfaceView implements Runnable,
 
     // This ArrayList can be accessed from either thread
     private CopyOnWriteArrayList<InputObserver>
-        inputObservers = new CopyOnWriteArrayList<>();
+        inputObservers = new CopyOnWriteArrayList();
 
     HUD mHUD;
     LevelManager mLevelManager;
@@ -89,7 +89,7 @@ class GameEngine extends SurfaceView implements Runnable,
         for (InputObserver o : inputObservers) {
             o.handleInput(motionEvent,
                     mGameState,
-                    mHUD.getCtonrols());
+                    mHUD.getControls());
         }
         return true;
     }

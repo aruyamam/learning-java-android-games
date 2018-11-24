@@ -11,8 +11,8 @@ class PlayerTransform extends Transform {
 
     private final float TENTH = .1f;
     private final float HALF = .5f;
-    private final float THIRD = .3F;
-    private final float FIFTH = .2F;
+    private final float THIRD = .3f;
+    private final float FIFTH = .2f;
     private final float FEET_PROTRUSION = 1.2f;
 
     private RectF mHeadRectF = new RectF();
@@ -32,7 +32,7 @@ class PlayerTransform extends Transform {
 
         super(speed, objectWidth, objectHeight, startingLocation);
 
-        mColliders = new ArrayList<RectF>();
+        mColliders = new ArrayList<>();
         // Load up the colliders ArrayList with
         // player specific colliders
         mColliders.add(mFeetRectF);
@@ -42,7 +42,7 @@ class PlayerTransform extends Transform {
     }
 
     public ArrayList<RectF> getColliders() {
-        updateCollider();
+        updateColliders();
         return mColliders;
     }
 
@@ -67,7 +67,7 @@ class PlayerTransform extends Transform {
         mColliders.get(2).left = location.x + objectWidth - (objectWidth * TENTH);
         mColliders.get(2).top = location.y + (objectHeight * THIRD);
         mColliders.get(2).right = location.x + objectWidth;
-        mColliders.get(2).bottom = location.y + (objectHeight - (objectHeight + HALF));
+        mColliders.get(2).bottom = location.y + (objectHeight - (objectHeight * HALF));
 
         // Left
         mColliders.get(3).left = location.x;

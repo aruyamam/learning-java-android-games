@@ -25,7 +25,7 @@ class PlayerUpdateComponent implements UpdateComponent {
         if (t.headingLeft()) {
             location.x -= speed / fps;
         }
-        else if (t.headingLeft()) {
+        else if (t.headingRight()) {
             location.x += speed / fps;
         }
 

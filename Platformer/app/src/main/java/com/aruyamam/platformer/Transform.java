@@ -18,12 +18,13 @@ public class Transform {
     private boolean mHeadingLeft = false;
     private boolean mHeadingRight = false;
 
-    Transform(float speed, float mObjectWidth,
-             float mObjectHeight, PointF startingLocation) {
+    Transform(float speed, float objectWidth,
+             float objectHeight, PointF startingLocation) {
+
         mCollider = new RectF();
         mSpeed  = speed;
-        mObjectHeight = mObjectHeight;
-        mObjectWidth = mObjectWidth;
+        mObjectHeight = objectHeight;
+        mObjectWidth = objectWidth;
         mLocation = startingLocation;
 
         // This tells movable blocks their starting position
